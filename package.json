@@ -1,0 +1,17 @@
+{
+  "name": "katey_cam",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite --port 1234",
+    "build": "rm -r dist/ && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "canvas-dither": "^1.0.1"
+  }
+}
