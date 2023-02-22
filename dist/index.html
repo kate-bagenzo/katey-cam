@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katie's Picture Day</title>
+    <script type="module" crossorigin src="/assets/index-84e0f380.js"></script>
+    <link rel="stylesheet" href="/assets/index-e0742636.css">
+  </head>
+  <body>
+    <div id="app">
+      <video autoplay></video>
+      <canvas></canvas>
+      <div>click to take photo</div>
+      <h1>controls</h1>
+      <div class="controlflex">
+      <span>
+      <h2>dither type</h2>
+      <div class="control dither_type">
+        <input type="radio" id ="dither1" name="dithertype" value="bayer">
+        <label for="dither1">bayer</label>
+        <input type="radio" id ="dither2" name="dithertype" value="floydsteinberg" checked="true" autocomplete="on">
+        <label for="dither2">floyd-steinberg</label>
+        <input type="radio" id ="dither3" name="dithertype" value="atkinson">
+        <label for="dither3">atkinson</label>
+        <div id="bayerthreshold"></div>
+      </div>
+      </span>
+
+      <span>
+      <h2>style</h2>
+      <div class="control dither_type">
+        <h3>flip</h3>
+        <p>
+        <input type="checkbox" id="flipped" name="flipped">
+        <label for="flipped">flip image</label>
+        </p>
+
+        <h3>color</h3>
+        <input type="radio" id ="color1" name="colortype" value="none" checked="true">
+        <label for="color1">none</label>
+        <input type="radio" id ="color2" name="colortype" value="none">
+        <label for="color2">custom</label>
+        <div id="customcolor"></div>
+      </div>
+      </span>
+    </div>
+    
+  </body>
+</html>
