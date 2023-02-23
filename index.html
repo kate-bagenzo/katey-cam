@@ -9,7 +9,7 @@
     <div id="app">
       <video autoplay></video>
       <canvas></canvas>
-      <div>click to take photo</div>
+      <div id="instructions">click to take photo</div>
       <h1>controls</h1>
       <div class="controlflex">
       <span>
@@ -41,6 +41,17 @@
         <label for="color2">custom</label>
         <div id="customcolor"></div>
       </div>
+      </span>
+
+      <span>
+        <h2>camera</h2>
+        <div class="control dither_type">
+          <h3>timer</h3>
+          <p>
+          <input type="checkbox" id="3sec" name="3sec">
+          <label for="3sec">3sec</label>
+          </p>
+        </div>
       </span>
     </div>
     <script type="module" src="./main.js"></script>
