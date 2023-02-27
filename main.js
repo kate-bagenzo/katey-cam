@@ -10,9 +10,10 @@ let canvas = null;
 let image = null;
 let streaming = true;
 let colorOn = false;
+let imageFlipped = false;
 let timerOn = false;
 let timerVisualOn = false;
-let timerVisualClock = 0;
+let timerVisualClock = "🕒";
 let ignorePicture = false;
 let ditherType = "floydsteinberg";
 let bayerThreshold = 100;
@@ -22,6 +23,9 @@ let bayerThreshold = 100;
 const ditherOptions = document.getElementsByName('dithertype');
 const bayerOptionThreshold = document.getElementById('bayerthreshold');
 for (let i = 0; i < ditherOptions.length; i++) {
+  if (ditherOptions[i].value == "floydsteinberg") {
+    ditherOptions[i].checked = true;
+  }
   if (ditherOptions[i].value == "bayer") {
     ditherOptions[i].addEventListener('change', function () {
       bayerOptionThreshold.innerHTML = `
@@ -48,7 +52,9 @@ for (let i = 0; i < ditherOptions.length; i++) {
 //controls
 //image flip
 const flipped = document.getElementById('flipped');
+flipped.checked = false;
 flipped.addEventListener('change', function () {
+  imageFlipped = !imageFlipped;
   ctx.translate(width, 0);
   ctx.scale(-1, 1);
 })
@@ -57,6 +63,7 @@ flipped.addEventListener('change', function () {
 //image color
 const color1 = document.getElementById('color1');
 const color2 = document.getElementById('color2');
+color1.checked = true;
 const colorDiv = document.getElementById('customcolor');
 color1.addEventListener('change', function () {
   colorDiv.innerHTML = "";
@@ -98,6 +105,7 @@ canvas.height = height;
 
 //click for photo
 const threeSec = document.getElementById('3sec');
+threeSec.checked = false;
 threeSec.addEventListener('change', function () {
   timerOn = !timerOn;
 })
@@ -114,6 +122,7 @@ canvas.addEventListener('click', function () {
   }
 });
 
+//photo instructions
 const instructions = document.getElementById('instructions');
 function takePhoto() {
   streaming = !streaming;
@@ -125,13 +134,14 @@ function takePhoto() {
   loop();
 }
 
+//timer
 function takePhotoTimed() {
   takePhoto();
   ignorePicture = false;
   timerVisualOn = false;
-  timerVisualClock = 0;
 }
 
+//more canvas setup
 const ctx = canvas.getContext('2d');
 ctx.font = "30px Inter";
 ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -167,14 +177,11 @@ function loop() {
     ctx.globalAlpha = 1;
   }
   if (timerVisualOn) {
-    timerVisualClock += 1;
-    if (timerVisualClock < 60) {
-      ctx.fillText("🕒", 30, 50);
-    } else if (timerVisualClock < 120) {
-      ctx.fillText("🕕", 30, 50);
-    } else {
-      ctx.fillText("🕘", 30, 50);
-    }
+
+  }
+  if (timerVisualOn) {
+    ctx.fillText(timerVisualClock, 30, 50);
+
   }
 }
 loop();
