@@ -2,7 +2,10 @@ import './style.css'
 import dither from 'canvas-dither'
 
 //variables
-const width = 512;
+let width = 512;
+if (window.screen.width < 512) {
+  width = 256;
+}
 const height = width / (4 / 3);
 const frameRate = 2;
 let video = null;
@@ -127,9 +130,10 @@ const instructions = document.getElementById('instructions');
 function takePhoto() {
   streaming = !streaming;
   if (streaming) {
-    instructions.innerHTML = "click to take photo"
+    instructions.innerHTML = "click image to take photo"
   } else {
-    instructions.innerHTML = "right click to save or copy"
+    const dataUrl = canvas.toDataURL("png");
+    instructions.innerHTML = "<a href=" + dataUrl + " target=\"_blank\">click here to save photo</a>"
   }
   loop();
 }

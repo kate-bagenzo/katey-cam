@@ -50,8 +50,6 @@ video {
 
 canvas {
   box-shadow: 10px 10px 0 var(--dark-primary);
-  position: sticky;
-  top: 10px;
 }
 
 .control {
@@ -109,4 +107,28 @@ p {
 
 input {
   accent-color: var(--dark-primary);
+}
+
+a {
+  color: var(--normal-primary);
+}
+
+a:hover,
+a:focus {
+  color: var(--bright-primary);
+}
+
+a:active {
+  color: white;
+}
+
+@media screen and (max-width: 500px) {
+  .controlflex {
+    flex-direction: column;
+  }
+
+  .dither_type {
+    display: flex;
+    flex-direction: column;
+  }
 }
